@@ -6,24 +6,7 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
-async function generateContent(prompt) {
 
-  if (!prompt || typeof prompt !== "string") {
-    throw new Error("Prompt must be a non-empty string");
-  }
-
-  const message = await groq.chat.completions.create({
-    messages: [
-      {
-        role: "user",
-        content: prompt,
-      },
-    ],
-    model: "llama-3.1-8b-instant",
-  });
-
-  return message.choices[0]?.message?.content || "";
-}
 
 async function reviewCode(code) {
   if (!code || typeof code !== "string") {
